@@ -1,6 +1,19 @@
 # Road Sign Classifier
 ## Overview
-This project trains a model that can recognize and identify the type of the German Traffic Signs observed. 
+This project implements a deep learning model to recognize traffic signs using the German Traffic Sign Recognition Benchmark (GTSRB) dataset. The model is built with TensorFlow/Keras and leverages convolutional neural networks (CNNs) for image classification.
+### Data Preprocessing:
+- Images are loaded and preprocessed using OpenCV and resized to 30x30 pixels.
+- Preprocessed data is saved as a pickle file to avoid redundant loading.
+- The dataset is divided into 43 categories, each representing a different type of road sign.
+### Model Architecture:
+- The CNN uses several convolutional and pooling layers for feature extraction.
+- Data Augmentation is applied to enhance model robustness, including techniques like random flipping, zoom, rotation, and contrast adjustments.
+- Batch Normalization and Dropout layers are included for better generalization and preventing overfitting.
+- The final layer uses the softmax activation function to classify images into one of 43 categories.
+### Training and Evaluation:
+- The model is trained for 10 epochs using the Adam optimizer and categorical crossentropy loss function.
+- The history of the training process is saved to a pickle file and can be used for visualization and evaluation.
+- The trained model is saved for future use. 
 
 ## !Important: Training dataset
 The training source, i.e., GTSRB - German Traffic Sign Recognition Benchmark, is not provided here due to the oversize amount of storage. Please go to Kaggle (https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign) to download the dataset. 
