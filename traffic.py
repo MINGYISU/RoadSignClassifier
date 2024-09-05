@@ -21,6 +21,7 @@ def main():
     if not os.path.isfile(to_load):
         sys.exit(f"{to_load} doesn't exist! Make sure you run $python dataloading.py first!")
     with open(to_load, 'rb') as f:
+        print("Loading Data......")
         images, labels = pickle.load(f)
     if len(images) != 0 and len(labels) != 0:
         print("Data loaded successfully!")
@@ -43,9 +44,11 @@ def main():
     to_save = 'history.pkl'
     with open(to_save, 'wb') as f:
         pickle.dump(history, f)
+    print(f"Training History saved to {to_save}")
 
     # Evaluate neural network performance
-    model.evaluate(x_test,  y_test, verbose=2)
+    print("Evaluating Training Result......")
+    model.evaluate(x_test, y_test, verbose=2)
 
     
     # Save model to file
@@ -55,7 +58,6 @@ def main():
         filename = sys.argv[1]
     model.save(filename)
     print(f"Model saved to {filename}.")
-
 
 
 
@@ -79,38 +81,32 @@ def get_model():
         # Feature extraction
 
         # First convolutional block, with 32 filters, each with a 3*3 kernal
-        layers.Conv2D(32, (3, 3), activation='relu', padding="same"),
+        layers.Conv2D(32, (5, 5), activation='relu', padding="same"),
+        layers.Conv2D(32, (5, 5), activation='relu', padding="same"),
         layers.MaxPooling2D((2, 2)),
+        layers.BatchNormalization(axis=-1), 
 
         # Second convolutional block
-        layers.Conv2D(64, (5, 5), activation='relu', padding="same"),
-        layers.MaxPooling2D((3, 3)),
-
-        # Second convolutional block
-        layers.Conv2D(128, (7, 7), activation='relu', padding="same"),
-        layers.MaxPooling2D((5, 5)),
-
+        layers.Conv2D(64, (3, 3), activation='relu', padding="same"),
+        layers.Conv2D(128, (3, 3), activation='relu', padding="same"),
+        layers.MaxPooling2D((2, 2)),
+        layers.BatchNormalization(axis=-1), 
+        layers.Dropout(0.25), 
 
         # Flatten the output of the convolutional layers
         layers.Flatten(),
 
         # Add a hidden layer, randomly dropout some nodes to prevent overfitting
         layers.Dense(64, activation="relu"), 
-        layers.Dropout(0.5), 
-        layers.BatchNormalization(), 
+        layers.Dropout(0.25), 
+        layers.BatchNormalization(axis=-1), 
 
         # Add another hidden layer to improve accuracy
         layers.Dense(128, activation="relu"), 
-        layers.Dropout(0.75), 
-        layers.BatchNormalization(), 
-
-        # Add another hidden layer to improve accuracy
-        layers.Dense(256, activation="relu"), 
-        layers.Dropout(0.5), 
+        layers.Dropout(0.25), 
         layers.BatchNormalization(), 
 
         # output layer
-        layers.Dense(64, activation='relu'),
         layers.Dense(NUM_CATEGORIES, activation='softmax')
     ])
 

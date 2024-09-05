@@ -6,11 +6,11 @@ This project trains a model that can recognize and identify the type of the Germ
 The training source, i.e., GTSRB - German Traffic Sign Recognition Benchmark, is not provided here due to the oversize amount of storage. Please go to Kaggle (https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign) to download the dataset. 
 
 ## Getting Start
-1. Go to https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign and download the GTSRB dataset, make sure the folder is named *gtsrb* and is saved in the same folder as dataloading.py
+1. Go to https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign and download the GTSRB dataset, make sure the folder is named *gtsrb* and is saved in the same folder as *dataloading.py*
 2. Run $**pip3 install -r requirements.txt**
 3. Run $**python3 dataloading.py** and a file called *gtsrb_data.pkl* should be generated
 4. Make sure the file *gtsrb_data.pkl* exists and run $**python3 traffic.py [model_name]**
-5. Run $**python3 test.py** to view the test result
+5. Run $**python3 test.py** to visualize the test result
 
 ## Credits
 - traffic.py: Portions of code from main() were adapted from [CS50’s Web Programming with Python and JavaScript](https://cdn.cs50.net/ai/2023/x/projects/5/trafc.zip).Harvard University.2024
