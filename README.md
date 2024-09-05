@@ -11,6 +11,7 @@ The training source, i.e., GTSRB - German Traffic Sign Recognition Benchmark, is
 3. Run $**python3 dataloading.py** and a file called *gtsrb_data.pkl* should be generated
 4. Make sure the file *gtsrb_data.pkl* exists and run $**python3 traffic.py [model_name]**
 5. Run $**python3 test.py** to visualize the test result
+6. Run $**python3 predict.py path_to_your_image** to call the model to classify your image
 
 ## Credits
 - traffic.py: Portions of code from main() were adapted from [CS50’s Web Programming with Python and JavaScript](https://cdn.cs50.net/ai/2023/x/projects/5/trafc.zip).Harvard University.2024
